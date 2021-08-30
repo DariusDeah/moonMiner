@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoonMiner</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assests/styles/style.css">
+</head>
+<style>
+  /* This is for wire framing to see our rows/columns */
+  body.debug .container,
+  body.debug .container-fluid {
+    outline: 2px double blue;
+    outline-offset: -2px;
+  }
+
+  body.debug .row {
+    outline: 2px dashed red;
+    outline-offset: -2px;
+  }
+
+  body.debug [class*="col-"] {
+    outline: 2px dotted forestgreen;
+    outline-offset: -3px;
+  }
+</style>
+
+<body class="">
+  <main class="container-fluid">
+    <header class="row text-center text-warning ">
+      <h1 class="display-3 fw-normal">Pick-Up-Pika<i class="fas fa-bolt ms-3 text-warning"></i></h1>
+    </header>
+
+    <section class="container-fluid contents-wrap d-flex justify-between">
+
+      <div class="col-4 card--in-stats  ">
+        <div class="card mb-3 card-background " style="max-width: 400px;">
+          <div class="row g-0 ">
+            <div class="col-md-4  border-right">
+              <h4 class="text-center bottom-borders pt-3 ">STATS</h4>
+
+            </div>
+            <div class="col-lg-8">
+              <div class="card-body">
+                <h4 class="card-title text-center p-0 m-0 fw-normal bottom-borders ">SHOP</h4>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <button class="mb-4 mt-4 btns btn-pokeball" id="pokeballBtn" onclick="buyPokeball()"><img
+                        src="https://www.pngitem.com/pimgs/m/604-6046515_pokeball-pixel-art-png-transparent-png.png"
+                        style="height: 3rem ;" alt="pokeball">-<span id="pokeballCost"></span></button>
+                    <button class="btns btn-trainer shakey" id="trainerBtn" onclick="buyTrainer()"><img
+                        src="http://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/6368a669117cd71.png"
+                        alt="" style="height: 3rem;">-<span id="trainerCost"></span></button>
+                  </div>
+                  <div class="col-md-6 ">
+                    <button class="mb-3 mt-4 btns btn-lightning-rod" onclick="buyLightningRod()"><img
+                        src="https://www.pikpng.com/pngl/m/60-609772_lightning-spear-kawaii-bow-png-clipart.png" alt=""
+                        style="height: 3rem;">-<span id="lightningRodCost"></span></button>
+                    <button class="btns btn-evolution mt-2" onclick="buyEvolution()"><img
+                        src="https://www.popsockets.com/dw/image/v2/BDFW_PRD/on/demandware.static/-/Sites-popsockets-master-catalog/default/dw18c4226b/images/hi-res/Pixel-Pikachu-Gloss_01_Top-View.png?sw=800&sh=800"
+                        style="height: 3rem;" alt="">-<span id="evolutionCost"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4 pikachu-wrap-box">
+        <img class="pikachu-sleep" id="pikachuSleep" src="assests/styles/imgs/pikachu-sleep.gif" alt="pikachu-sleep"
+          onclick="mine()">
+
+      </div>
+
+
+      <div class="col-lg-4">
+        <div class="card card-display " style="width: 18rem;">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"> <img src="assests/styles/imgs/bolt.png" alt="" style="height: 1.5rem;"> Bolts
+              Collected: <span id="boltsAmount"> 0</span>
+            </li>
+            <li class="list-group-item"> <img
+                src="https://www.pikpng.com/pngl/m/60-609772_lightning-spear-kawaii-bow-png-clipart.png" alt=""
+                style="height: 1.5rem;"> Lightning Rods: <span id="lightingRodAmount">0</span></li>
+            <li class="list-group-item"> <img
+                src="https://www.popsockets.com/dw/image/v2/BDFW_PRD/on/demandware.static/-/Sites-popsockets-master-catalog/default/dw18c4226b/images/hi-res/Pixel-Pikachu-Gloss_01_Top-View.png?sw=800&sh=800"
+                style="height: 1.5rem;" alt=""> Evolutions: <span id="evolutionAmount">0</span></li>
+            <li class="list-group-item"> <img
+                src="https://www.pngitem.com/pimgs/m/604-6046515_pokeball-pixel-art-png-transparent-png.png"
+                style="height: 1.5rem ;" alt="pokeball">
+              Poke Balls: <span id="pokeballAmount">0</span></li>
+            <li class="list-group-item"> <img
+                src="http://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/6368a669117cd71.png" alt=""
+                style="height: 1.5rem;"> Trainers: <span id="trainerAmount">0</span></li>
+          </ul>
+        </div>
+
+    </section>
+    </div>
+
+
+
+
+
+  </main>
+  <script src="app.js"></script>
+</body>
+
+</html>
