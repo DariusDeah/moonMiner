@@ -1,6 +1,12 @@
 let bolts = 0;
 let img = document.querySelector('img');
-let pokeballBtn = document.getElementById('pokeballBtn')
+let pikaSleep = document.getElementById('pikachuSleep');
+let pikaFloat = document.getElementById('pikaFloat');
+let pikaChargeUp = document.getElementById('pikaChargedUp');
+let ashWalking = document.getElementById('ashwalk');
+
+
+// let pokeballBtn = document.getElementById('pokeballBtn')
 
 let clickUpgrades = {
   pokeball: {
@@ -64,8 +70,7 @@ function mine() {
   autoUpgrades.trainer.quantity !== 0 ?
    activateTrainerMultiply():''
   
-  autoUpgrades.evolution.quantity !== 0 ?
-    activateEvolutionMultiply():''
+
 
 
  update();
@@ -238,6 +243,17 @@ function buyTrainer(){
     autoUpgrades.trainer.quantity++
   } else {document.getElementById('trainerBtn').classList.add('shakey') }
   
+   setInterval(function () {
+      activateTrainerMultiply()
+    }, 5000)
+   
+  clearInterval()
+
+   ashWalking.removeAttribute('hidden')
+
+  setTimeout(function(){
+    ashWalking.setAttribute('hidden', true)
+  },4999)
 
   update();
   changetrainerPrice();
@@ -278,31 +294,55 @@ function buyEvolution() {
   if (bolts >= autoUpgrades.evolution.price[0] && autoUpgrades.evolution.quantity == 0) {
     bolts -= autoUpgrades.evolution.price[0]
     autoUpgrades.evolution.quantity++
+    swal('Evolution Activated')
   } else if (bolts >= autoUpgrades.evolution.price[1] &&
     autoUpgrades.evolution.quantity === 1) {
     bolts -= autoUpgrades.evolution.price[1]
     autoUpgrades.evolution.quantity++
+    swal('Evolution Activated')
   } else if (bolts >= autoUpgrades.evolution.price[2] &&
     autoUpgrades.evolution.quantity === 2) {
     bolts -= autoUpgrades.evolution.price[2]
     autoUpgrades.evolution.quantity++
+    swal('Evolution Activated')
+
   }
   else if (bolts >= autoUpgrades.evolution.price[3] &&
     autoUpgrades.evolution.quantity === 3) {
     bolts -= autoUpgrades.evolution.price[3]
     autoUpgrades.evolution.quantity++
+    swal('Evolution Activated')
+
   }
   else if (bolts >= autoUpgrades.evolution.price[4] &&
     autoUpgrades.evolution.quantity === 4) {
     bolts -= autoUpgrades.evolution.price[4]
     autoUpgrades.evolution.quantity++
+    swal('Evolution Activated')
+
   }
   else if (bolts >= autoUpgrades.evolution.price[5] &&
     autoUpgrades.evolution.quantity === 5) {
     bolts -= autoUpgrades.evolution.price[5]
     autoUpgrades.evolution.quantity++
+    swal('Evolution Activated')
+
   }
+autoUpgrades.evolution.quantity !== 0 ?
   
+   setInterval(function () {
+      activateEvolutionMultiply()
+    }, 5000)
+    : ''
+  clearInterval()
+
+   pikaFloat.removeAttribute('hidden')
+  pikaSleep.setAttribute('hidden', true);
+
+  setTimeout(function(){
+    pikaSleep.removeAttribute('hidden')
+    pikaFloat.setAttribute('hidden', true)
+  },4999)
 
   update();
   changeEvolutionPrice();
@@ -323,15 +363,21 @@ function changeEvolutionMultiplyAmount() {
           autoUpgrades.evolution.quantity === 5 ? document.getElementById('evolutionMultiplyAmount').innerText = autoUpgrades.evolution.multiplier[5].toString() : '';
 }
 function activateEvolutionMultiply() {
+  
   autoUpgrades.evolution.quantity === 1 ?
   bolts += autoUpgrades.evolution.multiplier[0]:
   autoUpgrades.evolution.quantity === 2 ?
   bolts += autoUpgrades.evolution.multiplier[1]:
   autoUpgrades.evolution.quantity === 3 ?
   bolts += autoUpgrades.evolution.multiplier[2]:
-  autoUpgrades.evolution.quantity === 4 ?
-  bolts += autoUpgrades.evolution.multiplier[3]:''
+  autoUpgrades.evolution.quantity >= 4 ?
+          bolts += autoUpgrades.evolution.multiplier[3] : ''
+  
+  update();
 }
+
+
+
 
 
 

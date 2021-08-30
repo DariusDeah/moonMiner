@@ -21,7 +21,7 @@ main {
   width: fit-content;
   height: 150px;
   /* cursor: pointer; */
-
+  z-index: 1;
 
 }
 
@@ -124,4 +124,38 @@ main {
   animation-name: shake;
   animation-duration: 2sec;
 
+}
+
+
+.pika-float {
+  animation: floatingpika 6s infinite;
+}
+
+@keyframes floatingpika {
+  0% {
+    transform: translateY(0rem);
+
+  }
+
+
+  100% {
+    transform: translateY(-70rem);
+
+  }
+}
+
+.ash-walk {
+  animation: walk 11s infinite;
+  width: fit-content;
+  height: 70px;
+}
+
+@keyframes walk {
+  from {
+    transform: translateX(40rem);
+  }
+
+  to {
+    transform: translateX(-80rem);
+  }
 }

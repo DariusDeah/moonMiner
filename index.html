@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MoonMiner</title>
+  <title>Pick-Up-Pika</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
@@ -85,6 +85,13 @@
         <img class="pikachu-sleep" id="pikachuSleep" src="assests/styles/imgs/pikachu-sleep.gif" alt="pikachu-sleep"
           onclick="mine()">
 
+        <img src="assests/styles/imgs/floating pika.gif" alt="float" id="pikaFloat" class="pika-float pikachu-sleep"
+          hidden>
+
+        <img src="assests/styles/imgs/charged up pika.gif" alt="" id="pikaChargedUp" class="charging-pika pikachu-sleep"
+          hidden>
+
+        <img src="assests/styles/imgs/ash walking.gif" alt="" id="ashwalk" class="ash-walk" hidden>
       </div>
 
 
@@ -119,6 +126,7 @@
 
   </main>
   <script src="app.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 
 </html>
