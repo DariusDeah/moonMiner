@@ -24,7 +24,7 @@ let autoUpgrades = {
   evolution: {
     price: [800,1600,2400,3200],
     quantity: 0,
-    multiplier: [50,100,150,250]
+    multiplier: [80,130,200,300]
 
   }
 
@@ -35,6 +35,8 @@ let autoUpgrades = {
   
   document.getElementById('pokeballCost').innerText = clickUpgrades.pokeball.price[0].toString()
 
+ 
+
   document.getElementById('trainerCost').innerText = autoUpgrades.trainer.price[0].toString()
 
   document.getElementById('lightningRodCost').innerText = clickUpgrades.lightningRod.price[0].toString()
@@ -42,12 +44,21 @@ let autoUpgrades = {
   document.getElementById('evolutionCost').innerText = autoUpgrades.evolution.price[0].toString()
 
 }());
+(function showItemsMultiplier() {
+  document.getElementById('pokeballMultiplyAmount').innerText = clickUpgrades.pokeball.multiplier[0].toString()
+
+  document.getElementById('lightningrodMultiplyAmount').innerText = clickUpgrades.lightningRod.multiplier[0].toString()
+  document.getElementById('evolutionMultiplyAmount').innerText = autoUpgrades.evolution.multiplier[0].toString()
+  document.getElementById('trainerMultiplyAmount').innerText = autoUpgrades.trainer.multiplier[0].toString()
+  
+}());
 
 //#region 
 function mine() {
-  bolts++;
+ 
+    bolts++ 
 
-  update();
+update();
 
 
 }
@@ -63,40 +74,6 @@ function update() {
   document.getElementById('trainerAmount').innerText = autoUpgrades.trainer.quantity.toString();
   
 };
-function changePokeballPrice() {
-  clickUpgrades.pokeball.quantity === 1 ? document.getElementById('pokeballCost').innerText = clickUpgrades.pokeball.price[1].toString() :
-    clickUpgrades.pokeball.quantity === 2 ? document.getElementById('pokeballCost').innerText = clickUpgrades.pokeball.price[2].toString() :
-      clickUpgrades.pokeball.quantity === 3 ? document.getElementById('pokeballCost').innerText = clickUpgrades.pokeball.price[3].toString() :
-        clickUpgrades.pokeball.quantity === 4 ? document.getElementById('pokeballCost').innerText = clickUpgrades.pokeball.price[4].toString() :
-          clickUpgrades.pokeball.quantity === 5 ? document.getElementById('pokeballCost').innerText = clickUpgrades.pokeball.price[5].toString() : '';
-  
-
-  
-}
-
-function changeLightingPrice() {
-   clickUpgrades.lightningRod.quantity === 1 ? document.getElementById('lightningRodCost').innerText = clickUpgrades.lightningRod.price[1].toString() :
-    clickUpgrades.lightningRod.quantity === 2 ? document.getElementById('lightningRodCost').innerText = clickUpgrades.lightningRod.price[2].toString() :
-      clickUpgrades.lightningRod.quantity === 3 ? document.getElementById('lightningRodCost').innerText = clickUpgrades.lightningRod.price[3].toString() :
-        clickUpgrades.lightningRod.quantity === 4 ? document.getElementById('lightningRodCost').innerText = clickUpgrades.lightningRod.price[4].toString() :
-          clickUpgrades.lightningRod.quantity === 5 ? document.getElementById('lightningRodCost').innerText = clickUpgrades.lightningRod.price[5].toString() : '';
-  
-}
-
-function changetrainerPrice(){
-   autoUpgrades.trainer.quantity === 1 ? document.getElementById('trainerCost').innerText = autoUpgrades.trainer.price[1].toString() :
-    autoUpgrades.trainer.quantity === 2 ? document.getElementById('trainerCost').innerText = autoUpgrades.trainer.price[2].toString() :
-      autoUpgrades.trainer.quantity === 3 ? document.getElementById('trainerCost').innerText = autoUpgrades.trainer.price[3].toString() :
-        autoUpgrades.trainer.quantity === 4 ? document.getElementById('trainerCost').innerText = autoUpgrades.trainer.price[4].toString() :
-         '';  
-}
-
-function changeEvolutionPrice() {
-   autoUpgrades.evolution.quantity === 1 ? document.getElementById('evolutionCost').innerText = autoUpgrades.evolution.price[1].toString() :
-    autoUpgrades.evolution.quantity === 2 ? document.getElementById('evolutionCost').innerText = autoUpgrades.evolution.price[2].toString() :
-      autoUpgrades.evolution.quantity === 3 ? document.getElementById('evolutionCost').innerText = autoUpgrades.evolution.price[3].toString() :
-         '';  
-}
 function buyPokeball() {
   if (bolts >= clickUpgrades.pokeball.price[0] && clickUpgrades.pokeball.quantity == 0) {
     bolts -= clickUpgrades.pokeball.price[0]
@@ -129,9 +106,28 @@ function buyPokeball() {
 
   update();
   changePokeballPrice();
+  changePokeballMultiplyAmount();
 
   
 };
+function changePokeballPrice() {
+  clickUpgrades.pokeball.quantity === 1 ? document.getElementById('pokeballCost').innerText = clickUpgrades.pokeball.price[1].toString() :
+    clickUpgrades.pokeball.quantity === 2 ? document.getElementById('pokeballCost').innerText = clickUpgrades.pokeball.price[2].toString() :
+      clickUpgrades.pokeball.quantity === 3 ? document.getElementById('pokeballCost').innerText = clickUpgrades.pokeball.price[3].toString() :
+        clickUpgrades.pokeball.quantity === 4 ? document.getElementById('pokeballCost').innerText = clickUpgrades.pokeball.price[4].toString() :
+          clickUpgrades.pokeball.quantity === 5 ? document.getElementById('pokeballCost').innerText = clickUpgrades.pokeball.price[5].toString() : '';
+  
+
+  
+}
+function changePokeballMultiplyAmount() {
+  clickUpgrades.pokeball.quantity === 1 ? document.getElementById('pokeballMultiplyAmount').innerText = clickUpgrades.pokeball.multiplier[1].toString() :
+    clickUpgrades.pokeball.quantity === 2 ? document.getElementById('pokeballMultiplyAmount').innerText = clickUpgrades.pokeball.multiplier[2].toString() :
+      clickUpgrades.pokeball.quantity === 3 ? document.getElementById('pokeballMultiplyAmount').innerText = clickUpgrades.pokeball.multiplier[3].toString() :
+        clickUpgrades.pokeball.quantity === 4 ? document.getElementById('pokeballMultiplyAmount').innerText = clickUpgrades.pokeball.multiplier[4].toString() :
+          clickUpgrades.pokeball.quantity === 5 ? document.getElementById('pokeballMultiplyAmount').innerText = clickUpgrades.pokeball.multiplier[5].toString() : '';
+  
+}
 
 function buyLightningRod() {
   if (bolts >= clickUpgrades.lightningRod.price[0] && clickUpgrades.lightningRod.quantity == 0) {
@@ -155,11 +151,53 @@ function buyLightningRod() {
   }
 
 
-
-  changeLightingPrice();
-
+  
   update();
+  changeLightingPrice();
+  changelightingrodMultiplyAmount();
+
 }
+function changeLightingPrice() {
+   clickUpgrades.lightningRod.quantity === 1 ? document.getElementById('lightningRodCost').innerText = clickUpgrades.lightningRod.price[1].toString() :
+    clickUpgrades.lightningRod.quantity === 2 ? document.getElementById('lightningRodCost').innerText = clickUpgrades.lightningRod.price[2].toString() :
+      clickUpgrades.lightningRod.quantity === 3 ? document.getElementById('lightningRodCost').innerText = clickUpgrades.lightningRod.price[3].toString() :
+        clickUpgrades.lightningRod.quantity === 4 ? document.getElementById('lightningRodCost').innerText = clickUpgrades.lightningRod.price[4].toString() :
+          clickUpgrades.lightningRod.quantity === 5 ? document.getElementById('lightningRodCost').innerText = clickUpgrades.lightningRod.price[5].toString() : '';
+  
+}
+
+function changelightingrodMultiplyAmount() {
+  clickUpgrades.lightningRod.quantity === 1 ? document.getElementById('lightningrodMultiplyAmount').innerText = clickUpgrades.lightningRod.multiplier[1].toString() :
+    clickUpgrades.lightningRod.quantity === 2 ? document.getElementById('lightningrodMultiplyAmount').innerText = clickUpgrades.lightningRod.multiplier[2].toString() :
+      clickUpgrades.lightningRod.quantity === 3 ? document.getElementById('lightningrodMultiplyAmount').innerText = clickUpgrades.lightningRod.multiplier[3].toString() :
+        clickUpgrades.lightningRod.quantity === 4 ? document.getElementById('lightningrodMultiplyAmount').innerText = clickUpgrades.lightningRod.multiplier[4].toString() :
+          clickUpgrades.lightningRod.quantity === 5 ? document.getElementById('lightningrodMultiplyAmount').innerText = clickUpgrades.lightningRod.multiplier[5].toString() : '';
+}
+
+function changetrainerPrice(){
+   autoUpgrades.trainer.quantity === 1 ? document.getElementById('trainerCost').innerText = autoUpgrades.trainer.price[1].toString() :
+    autoUpgrades.trainer.quantity === 2 ? document.getElementById('trainerCost').innerText = autoUpgrades.trainer.price[2].toString() :
+      autoUpgrades.trainer.quantity === 3 ? document.getElementById('trainerCost').innerText = autoUpgrades.trainer.price[3].toString() :
+        autoUpgrades.trainer.quantity === 4 ? document.getElementById('trainerCost').innerText = autoUpgrades.trainer.price[4].toString() :
+         '';  
+}
+
+function changeEvolutionPrice() {
+   autoUpgrades.evolution.quantity === 1 ? document.getElementById('evolutionCost').innerText = autoUpgrades.evolution.price[1].toString() :
+    autoUpgrades.evolution.quantity === 2 ? document.getElementById('evolutionCost').innerText = autoUpgrades.evolution.price[2].toString() :
+      autoUpgrades.evolution.quantity === 3 ? document.getElementById('evolutionCost').innerText = autoUpgrades.evolution.price[3].toString() :
+         '';  
+}
+
+function changeTrainerMultiplyAmount() {
+   autoUpgrades.trainer.quantity === 1 ? document.getElementById('trainerMultiplyAmount').innerText = autoUpgrades.trainer.multiplier[1].toString() :
+    autoUpgrades.trainer.quantity === 2 ? document.getElementById('trainerMultiplyAmount').innerText = autoUpgrades.trainer.multiplier[2].toString() :
+      autoUpgrades.trainer.quantity === 3 ? document.getElementById('trainerMultiplyAmount').innerText = autoUpgrades.trainer.multiplier[3].toString() :
+        autoUpgrades.trainer.quantity === 4 ? document.getElementById('trainerMultiplyAmount').innerText = autoUpgrades.trainer.multiplier[4].toString() :
+          autoUpgrades.trainer.quantity === 5 ? document.getElementById('trainerMultiplyAmount').innerText = autoUpgrades.trainer.multiplier[5].toString() : '';
+}
+
+
 
 function buyTrainer(){
   if (bolts >= autoUpgrades.trainer.price[0] && autoUpgrades.trainer.quantity == 0) {
@@ -185,6 +223,7 @@ function buyTrainer(){
 
   update();
   changetrainerPrice();
+  changeTrainerMultiplyAmount();
 }
 function buyEvolution() {
   if (bolts >= autoUpgrades.evolution.price[0] && autoUpgrades.evolution.quantity == 0) {
@@ -218,8 +257,24 @@ function buyEvolution() {
 
   update();
   changeEvolutionPrice();
+  changeEvolutionMultiplyAmount();
 
 }
+
+function changeEvolutionMultiplyAmount() {
+   autoUpgrades.evolution.quantity === 1 ? document.getElementById('evolutionMultiplyAmount').innerText = autoUpgrades.evolution.multiplier[1].toString() :
+    autoUpgrades.evolution.quantity === 2 ? document.getElementById('evolutionMultiplyAmount').innerText = autoUpgrades.evolution.multiplier[2].toString() :
+      autoUpgrades.evolution.quantity === 3 ? document.getElementById('evolutionMultiplyAmount').innerText = autoUpgrades.evolution.multiplier[3].toString() :
+        autoUpgrades.evolution.quantity === 4 ? document.getElementById('evolutionMultiplyAmount').innerText = autoUpgrades.evolution.multiplier[4].toString() :
+          autoUpgrades.evolution.quantity === 5 ? document.getElementById('evolutionMultiplyAmount').innerText = autoUpgrades.evolution.multiplier[5].toString() : '';
+}
+
+
+
+
+
+
+
 
 //#endregion
 
