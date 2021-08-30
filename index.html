@@ -48,6 +48,8 @@
           <div class="row g-0 ">
             <div class="col-md-4  border-right">
               <h4 class="text-center bottom-borders pt-3 ">STATS</h4>
+              <h6>clicks per second:</h6>
+              <h6 id="clickCount"></h6>
 
             </div>
             <div class="col-lg-8">
@@ -83,7 +85,7 @@
 
       <div class="col-4 pikachu-wrap-box">
         <img class="pikachu-sleep" id="pikachuSleep" src="assests/styles/imgs/pikachu-sleep.gif" alt="pikachu-sleep"
-          onclick="mine()">
+          onclick="mine()" onmousedown="clickCounter()" onmouseleave="countReset()">
 
         <img src="assests/styles/imgs/floating pika.gif" alt="float" id="pikaFloat" class="pika-float pikachu-sleep"
           hidden>

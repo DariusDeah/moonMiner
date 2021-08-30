@@ -128,7 +128,7 @@ main {
 
 
 .pika-float {
-  animation: floatingpika 6s infinite;
+  animation: floatingpika 7s infinite;
 }
 
 @keyframes floatingpika {

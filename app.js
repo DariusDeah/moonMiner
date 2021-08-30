@@ -4,7 +4,7 @@ let pikaSleep = document.getElementById('pikachuSleep');
 let pikaFloat = document.getElementById('pikaFloat');
 let pikaChargeUp = document.getElementById('pikaChargedUp');
 let ashWalking = document.getElementById('ashwalk');
-
+let count = 0
 
 // let pokeballBtn = document.getElementById('pokeballBtn')
 
@@ -88,6 +88,7 @@ function update() {
 
   document.getElementById('trainerAmount').innerText = autoUpgrades.trainer.quantity.toString();
   
+ 
 };
 
 
@@ -304,7 +305,13 @@ function buyEvolution() {
     autoUpgrades.evolution.quantity === 2) {
     bolts -= autoUpgrades.evolution.price[2]
     autoUpgrades.evolution.quantity++
+     pikaChargeUp.removeAttribute('hidden')
+  pikaSleep.setAttribute('hidden', true);
     swal('Evolution Activated')
+     setTimeout(function(){
+    pikaSleep.removeAttribute('hidden')
+    pikaChargeUp.setAttribute('hidden', true)
+  },4999)
 
   }
   else if (bolts >= autoUpgrades.evolution.price[3] &&
@@ -328,9 +335,9 @@ function buyEvolution() {
     swal('Evolution Activated')
 
   }
-autoUpgrades.evolution.quantity !== 0 ?
+  autoUpgrades.evolution.quantity !== 0 ?
   
-   setInterval(function () {
+    setInterval(function () {
       activateEvolutionMultiply()
     }, 5000)
     : ''
@@ -376,48 +383,22 @@ function activateEvolutionMultiply() {
   update();
 }
 
-
-
-
-
-
-
-
-
-
-
-
 //#endregion
 
-
-
-
-
-
-
-
-
-
-// function buyPickaxe() {
-
-//   // eggs >= 4 ? eggs -= clickUpgrades.pickaxes.price :
-//   //   eggs >= 4 ? pickaxeCount++:
-//   if (bolts >= clickUpgrades.pickaxes.price) {
-//     bolts -= clickUpgrades.pickaxes.price
-//     clickUpgrades.pickaxes.quanity += 1
-//   }
+function clickCounter() {
+  if (count > 30) {
+  count = 0
+}
+  count++
+  document.getElementById('clickCount').innerText = count.toString()
   
+  // countReset(count)
+}
 
-//   update();
-//   pickaxeMultiplier();
-//   displayPickaxe();
-// }
-// function displayPickaxe() {
-//   document.getElementById('pickaxeBtnAmount').innerText = clickUpgrades.pickaxes.quanity.toString()
-// }
+function countReset() {
+ count = 0
+   
+   document.getElementById('clickCount').innerText = count.toString()
 
-// function pickaxeMultiplier() {
-//   bolts * clickUpgrades.pickaxes.quanity;
-// }
-
-
+  
+}
